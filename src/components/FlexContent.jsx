@@ -8,7 +8,7 @@ const FlexContent = ({ ifExists, endpoint: { title, heading, text, img, btn, url
     <>
       <div className={`flex items-center nike-container mt-6 ${ifExists ? 'flex-row-reverse' : 'flex-row'}`}>
         <div className='max-w-lg lg:max-w-none w-full md:text-center lg:justify-items-center'>
-          <h1 className='text-2xl sm:text-1xl font-bold text-gradient m-0'>{heading}</h1>
+          <h1 className='text-2xl sm:text-1xl font-bold text-gradient m-0 typing-demo '>{heading}</h1>
           <h1 className='text-4xl lg:text-3xl md:text-2xl sm:text-1xl font-bold text-slate-900 filter drop-shadow-lg m-0' style={{ lineHeight: '1' }}>
             {firstLine}
             <br />

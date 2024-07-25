@@ -97,6 +97,18 @@ const popularsales = {
       color: "from-violet-500 to-indigo-500",
       shadow: "shadow-lg shadow-violet-500",
     },
+    {
+      id: "0p0x2",
+      title: "iFlight Afterburner 5 O3 6S",
+      text: "HD 2RAW",
+      rating: "4.5",
+      btn: "Buy Now",
+      img: psale1,
+      price: "79999",
+      color: "from-red-500 to-rose-500",
+      shadow: "shadow-lg shadow-rose-500",
+      features:"hello"
+    },
   ],
 };
 

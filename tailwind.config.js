@@ -5,9 +5,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {  lineHeight: {
-      'extra-tight': '0.8', // custom line height
-    }},
+    extend:  {
+      animation:{"loop-scroll":"loop-scroll 10s linear infinite"},
+      keyframes:{
+        "loop-scroll":{
+          from:{transform:"translateX(0)"},
+          to:{transform:"translateX(-100%)"},
+        }
+      }
+    },
     screens: {
       'xl': {'max': '1280px'},
       'lg': {'max': '991px'},

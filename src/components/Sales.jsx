@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Item from './utils/Item';
 import Title from './utils/Title';
@@ -8,7 +8,10 @@ const Sales = React.forwardRef(({ ifExists, endpoint: { title, items }, onProduc
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (id) => {
+  const openModal = (id, e) => {
+    if (e.target.closest('.cart-button') || e.target.closest('.buy-now-button')) {
+      return;
+    }
     setSelectedProductId(id);
     setIsModalOpen(true);
     if (onProductClick) {
@@ -26,12 +29,12 @@ const Sales = React.forwardRef(({ ifExists, endpoint: { title, items }, onProduc
   return (
     <div className='nike-container' ref={ref}>
       <Title title={title} />
-      <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4 ${ifExists ? 'grid-cols-3 xl:grid-cols-3 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
+      <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4  ${ifExists ? 'grid-cols-4 xl:grid-cols-4 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
         {items?.map((item, i) => (
           <Item 
             {...item} 
             key={i} 
-            onClick={() => openModal(item.id)} 
+            onClick={(e) => openModal(item.id, e)} 
           />
         ))}
       </div>
@@ -60,6 +63,9 @@ Sales.defaultProps = {
 };
 
 export default Sales;
+
+
+
 
 
 

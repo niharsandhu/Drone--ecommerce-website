@@ -14,7 +14,7 @@ const CartCount = ({ onCartToggle, totalQTY, onClearCartItems }) => {
             </div>
         </div>
         <div className='flex items-center'>
-            <button type='button' onClick={onClearCartItems} className='rounded bg-theme-cart active:scale-90 p-0.5'>
+            <button type='button' onClick={onCartToggle} className='rounded bg-theme-cart active:scale-90 p-0.5'>
                 <XMarkIcon className='w-5 h-5 text-white stroke-[2]' />
             </button>
         </div>

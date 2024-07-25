@@ -23,18 +23,20 @@ const Item = ({
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const onAddToCart = () => {
+  const onAddToCart = (e) => {
+    e.stopPropagation(); // Prevent event propagation
     const item = { id, title, text, img, color, shadow, price };
     dispatch(setAddItemToCart(item));
   };
 
-  const onAddToCartAndToggle = () => {
-    onAddToCart();
+  const onAddToCartAndToggle = (e) => {
+    e.stopPropagation(); // Prevent event propagation
+    onAddToCart(e);
     dispatch(setOpenCart({ cartState: true }));
   };
 
-  const handleItemClick = () => {
-    if (onClick) onClick(id); // Call the passed onClick function with the item id
+  const handleItemClick = (e) => {
+    if (onClick) onClick(e); // Call the passed onClick function with the event
     setIsModalOpen(true);
   };
 
@@ -65,14 +67,14 @@ const Item = ({
           <div className="flex items-center gap-2 absolute top-16 mt-1.5">
             <button
               type="button"
-              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200"
+              className="bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200 cart-button"
               onClick={onAddToCart}
             >
               <ShoppingBagIcon className="icon-style text-slate-900 w-3 h-3" />
             </button>
             <button
               type="button"
-              className="bg-white/90 blur-effect-theme button-theme w-14 h-4 px-1 py-0 shadow shadow-sky-200 text-[10px] text-black"
+              className="bg-white/90 blur-effect-theme button-theme w-14 h-4 px-1 py-0 shadow shadow-sky-200 text-[10px] text-black buy-now-button"
               onClick={onAddToCartAndToggle}
             >
               {btn}
@@ -97,6 +99,8 @@ const Item = ({
 };
 
 export default Item;
+
+
 
 
 
