@@ -1,16 +1,14 @@
 import React, { useRef } from 'react';
 import { Cart, FlexContent, Footer, Hero, Navbar, Sales, Stories } from './components';
-import { heroapi, popularsales, toprateslaes, highlight, sneaker, story, footerAPI, topratesales2 } from './data/data.js';
-
+import { heroapi, popularsales, highlight, sneaker, story, footerAPI, Electronics } from './data/data.js';
 
 
 const App = () => {
   return (
    <>
-
-      <Cart />
-      <main className='flex flex-col gap-16 relative'>
-        <Sales endpoint={toprateslaes} />
+      <Cart/>
+      <main>
+        <Sales endpoint={Electronics} />
         <FlexContent endpoint={sneaker} />
       </main>
       <Footer footerAPI={footerAPI} />
