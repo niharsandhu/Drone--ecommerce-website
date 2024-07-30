@@ -23,3 +23,13 @@ Foot-
      Footer 
 
 Data folder contains info of every product.
+8 categories x 8 products-
+                          electronics
+                          frames
+                          camera
+                          motors
+                          propellers
+                          accessories
+                          battery
+                          radio
+            
