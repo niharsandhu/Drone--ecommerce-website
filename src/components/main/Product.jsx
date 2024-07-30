@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { setAddItemToCart, setOpenCart } from "../../app/CartSlice";
-import Modal from "../utils/Modal";
+import Modal from "./Modal"; // Import ProductDescription
 
-const Item = ({
+const Product = ({
   id,
   color,
   shadow,
@@ -92,13 +92,32 @@ const Item = ({
       </div>
 
       {isModalOpen && (
-        <Modal item={{ id, title, text, img, color, shadow, price, rating, specifications, features, additionalImages, reviews }} onClose={closeModal} />
+        <Modal
+          item={{
+            id,
+            title,
+            text,
+            img,
+            color,
+            shadow,
+            price,
+            rating,
+            specifications,
+            features,
+            additionalImages,
+            reviews
+          }}
+          onClose={closeModal}
+        />
       )}
     </div>
   );
 };
 
-export default Item;
+export default Product; // Ensure only one default export
+
+
+
 
 
 

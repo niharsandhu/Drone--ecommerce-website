@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Footer = ({ footerAPI: { titles, links } }) => {
+export const Footer = ({ footerAPI: { titles, links } }) => {
   const [Year, setYear] = useState();
   useEffect(() => {
       const getYear = () => setYear(new Date().getFullYear());
@@ -32,5 +32,3 @@ const Footer = ({ footerAPI: { titles, links } }) => {
    </>
   )
 }
-
-export default Footer;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SocialLink = ({ icon }) => {
+const SocialMedia = ({ icon }) => {
   return (
    <>
       <img
@@ -12,4 +12,4 @@ const SocialLink = ({ icon }) => {
   )
 }
 
-export default SocialLink;
+export default SocialMedia;

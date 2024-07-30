@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './form.css';
 import * as Components from './compo';
 
 function Sign() {
@@ -52,4 +54,9 @@ function Sign() {
     );
 }
 
-export default Sign;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Sign/>
+  </React.StrictMode>
+);

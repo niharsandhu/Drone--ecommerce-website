@@ -1,6 +1,7 @@
 import React from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 
+// Styles for the modal
 const modalStyles = {
   overlay: {
     position: "fixed",
@@ -59,17 +60,18 @@ const modalStyles = {
   },
   sectionContent: {
     marginBottom: "1rem",
-    fontSize:'11px'
+    fontSize: '11px'
   },
-  box:{
-    display:"flex",
+  box: {
+    display: "flex",
   }
 };
 
+// ProductDescription component to display detailed product information
 const Modal = ({ item, onClose }) => {
   if (!item) return null;
 
-  const additionalImages = Array.isArray(item.additionalImages) ? item.additionalImages : [];
+  // Format specifications for display
   const formatSpecifications = (text) => {
     return text ? text.split('\n').map((line, index) => (
       <React.Fragment key={index}>
@@ -96,7 +98,7 @@ const Modal = ({ item, onClose }) => {
             <p className="text-gray-700 text-[13px] mb-0">{item.text}</p>
           </div>
           <div style={modalStyles.box}>
-            <div className="flex ">
+            <div className="flex">
               <span className="font-semibold text-[14px]">₹{item.price}</span>
             </div>
             <div className="flex items-center ml-2">
@@ -107,8 +109,8 @@ const Modal = ({ item, onClose }) => {
           <div>
             <h2 style={modalStyles.sectionTitle}>Specifications</h2>
             <div style={modalStyles.sectionContent}>
-            {formatSpecifications(item.specifications) || 'No specifications available'}
-      </div>
+              {formatSpecifications(item.specifications) || 'No specifications available'}
+            </div>
           </div>
           <div>
             <h2 style={modalStyles.sectionTitle}>Features</h2>
@@ -119,8 +121,8 @@ const Modal = ({ item, onClose }) => {
           <div>
             <h2 style={modalStyles.sectionTitle}>Additional Images</h2>
             <div style={modalStyles.sectionContent}>
-              {additionalImages.length > 0 ? (
-                additionalImages.map((image, index) => (
+              {item.additionalImages && item.additionalImages.length > 0 ? (
+                item.additionalImages.map((image, index) => (
                   <img key={index} src={image} alt={`img/item-img/${item.id}-${index}`} className="w-[300px] h-auto object-contain mb-2" />
                 ))
               ) : (
@@ -141,6 +143,7 @@ const Modal = ({ item, onClose }) => {
 };
 
 export default Modal;
+
 
 
 

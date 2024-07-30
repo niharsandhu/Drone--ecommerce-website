@@ -1,8 +1,25 @@
-# React + Vite
+Important Links:
+Go to ViteJS [https://vitejs.dev/] 
+Go to TailwindCSS [https://tailwindcss.com/!]
+Go to Redux-Toolkit [https://redux-toolkit.js.org/!]
+Go to React-Redux [https://react-redux.js.org/!]
+Go to React-Hot-Toast [https://www.npmjs.com/package/react-hot-toast]
+Go to hero-icons-React [https://www.npmjs.com/package/@heroicons/react]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Flow of the site:
+Head-
+      Navbar (contains menu bar which external link of each category, also contains sign in page)
+      Hero- 
+            Clips
+            Social Links
 
-Currently, two official plugins are available:
+Main-(each product when clicked opens modal window containing description)
+     PopularSales(top 4 most selling)
+     highlight
+     OurProduct(random product come form each category after every refresh)
+     highlight
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Foot-
+     Footer 
+
+Data folder contains info of every product.
