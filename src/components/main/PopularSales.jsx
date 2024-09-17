@@ -54,10 +54,10 @@ const Psales = React.forwardRef(({ ifExists, endpoint: { title }, onProductClick
       <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4 ${ifExists ? 'grid-cols-4 xl:grid-cols-4 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
         {itemData?.map((item, i) => (
           <Product
-            key={item.id}
+            key={item.id} // index number for unique identification
             title={item.name} // name of the product
-            price={item.price}
-            text={item.description}
+            price={item.price} // price of the item
+            text={item.description} // description of the item
             img={item.images[0]?.full_image_url} // Use the first image from the array
             onClick={(e) => openModal(item.id, e)}
           />

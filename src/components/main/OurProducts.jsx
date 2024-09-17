@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Product from './Product';
 import Title from './Title';
 import Modal from './Modal';
+import axios from 'axios';
 
 // Function to shuffle an array
 const shuffleArray = (array) => {
@@ -28,6 +29,7 @@ export const Sales = React.forwardRef(({ ifExists, categories, numberOfItems, on
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [randomItems, setRandomItems] = useState([]);
+  const [itemData, setItemData] = useState([]); // API's data
 
   useEffect(() => {
     if (categories) {
@@ -53,15 +55,38 @@ export const Sales = React.forwardRef(({ ifExists, categories, numberOfItems, on
 
   if (!ifExists) return null;
 
+  // For fetching data from API
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get("http://68.183.81.196/api/product", {
+          auth: {
+            username: import.meta.env.VITE_USERNAME,
+            password: import.meta.env.VITE_PASSWORD,
+          }
+        });
+
+        setItemData(result.data.data.data); // This is the array of products
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className='nike-container' ref={ref}>
       <Title title="Our Products" />
       <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4 ${ifExists ? 'grid-cols-4 xl:grid-cols-4 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
-        {randomItems.map((product, i) => (
-          <Product 
-            {...product} 
-            key={i} 
-            onClick={(e) => openModal(product.id, e)} 
+        {itemData.map((item, i) => (
+          <Product
+            key={item.id} // index number for unique identification
+            title={item.name} // name of the product
+            price={item.price} // price of the item
+            text={item.description} // description of the item
+            img={item.images[0]?.full_image_url} // Use the first image from the array
+            onClick={(e) => openModal(item.id, e)}
           />
         ))}
       </div>
@@ -90,18 +115,7 @@ Sales.propTypes = {
 Sales.defaultProps = {
   ifExists: true,
   numberOfItems: 1, // Default number of items to show from each category
-  onProductClick: () => {},
+  onProductClick: () => { },
 };
 
 export default Sales;
-
-
-
-
-
-
-
-
-
-
-
