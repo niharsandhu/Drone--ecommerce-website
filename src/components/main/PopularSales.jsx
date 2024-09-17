@@ -8,7 +8,7 @@ import axios from 'axios';
 const Psales = React.forwardRef(({ ifExists, endpoint: { title }, onProductClick }, ref) => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemData, setItemData] = useState([]);
+  const [itemData, setItemData] = useState([]); // an Empty array for the data.
 
   const openModal = (id, e) => {
     if (e.target.closest('.cart-button') || e.target.closest('.buy-now-button')) {
@@ -28,17 +28,17 @@ const Psales = React.forwardRef(({ ifExists, endpoint: { title }, onProductClick
 
   if (!ifExists) return null;
 
+  // For fetching data from API
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get("http://68.183.81.196/api/product", {
+        const result = await axios.get("http://68.183.81.196/api/product/featured", {
           auth: {
             username: import.meta.env.VITE_USERNAME,
             password: import.meta.env.VITE_PASSWORD,
           }
         });
 
-        console.log(result.data);
         setItemData(result.data.data.data); // This is the array of products
       } catch (error) {
         console.log(error);

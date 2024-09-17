@@ -11,7 +11,6 @@ const Product = ({
   title,
   text,
   img,
-  btn,
   rating,
   price,
   specifications,
