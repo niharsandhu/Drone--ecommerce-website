@@ -68,7 +68,18 @@ const modalStyles = {
 };
 
 // ProductDescription component to display detailed product information
-const Modal = ({ item, onClose }) => {
+const Modal = ({
+  item, 
+  onClose,
+  title,
+  price,
+  text,
+  img,
+  specifications,
+  features,
+  includes,
+  onClick
+}) => {
   if (!item) return null;
 
   // Format specifications for display
@@ -88,42 +99,46 @@ const Modal = ({ item, onClose }) => {
           ×
         </button>
         <img
-          src={item.img}
+          src={image || (item.images?.[0]?.full_image_url || 'placeholder.jpg')}
           alt={`img/item-img/${item.id}`}
           style={modalStyles.image}
         />
         <div style={modalStyles.description}>
           <div>
-            <h1 className="text-[15px] font-bold mb-0">{item.title}</h1>
-            <p className="text-gray-700 text-[13px] mb-0">{item.text}</p>
+            <h1 className="text-[15px] font-bold mb-0">{title}</h1>
+            <p className="text-gray-700 text-[13px] mb-0">{text}</p>
           </div>
           <div style={modalStyles.box}>
             <div className="flex">
-              <span className="font-semibold text-[14px]">₹{item.price}</span>
+              <span className="font-semibold text-[14px]">₹{price}</span>
             </div>
             <div className="flex items-center ml-2">
               <StarIcon className="w-5 h-5 text-yellow-500" />
-              <span className="ml-1 text-sm">{item.rating}</span>
+              <span className="ml-1 text-sm">1% Off</span>
             </div>
           </div>
           <div>
             <h2 style={modalStyles.sectionTitle}>Specifications</h2>
             <div style={modalStyles.sectionContent}>
-              {formatSpecifications(item.specifications) || 'No specifications available'}
+              {specifications || 'No specifications available'}
             </div>
           </div>
           <div>
             <h2 style={modalStyles.sectionTitle}>Features</h2>
-            <p style={modalStyles.sectionContent}>
-              {item.features || 'No features available'}
-            </p>
+            <ul style={modalStyles.sectionContent}>
+              {features?.length > 0 
+                ? features.map((feature, index) => (
+                    <li key={index}>{feature.feature}</li>
+                  ))
+                : 'No features available'}
+            </ul>
           </div>
           <div>
             <h2 style={modalStyles.sectionTitle}>Additional Images</h2>
             <div style={modalStyles.sectionContent}>
-              {item.additionalImages && item.additionalImages.length > 0 ? (
-                item.additionalImages.map((image, index) => (
-                  <img key={index} src={image} alt={`img/item-img/${item.id}-${index}`} className="w-[300px] h-auto object-contain mb-2" />
+              {img.length > 0 ? (
+                item.images.map((image, index) => (
+                  <img key={index} src={image.full_image_url} alt={`img/item-img/${item.id}-${index}`} className="w-[300px] h-auto object-contain mb-2" />
                 ))
               ) : (
                 <p>No additional images available</p>
@@ -131,10 +146,14 @@ const Modal = ({ item, onClose }) => {
             </div>
           </div>
           <div>
-            <h2 style={modalStyles.sectionTitle}>Reviews</h2>
-            <p style={modalStyles.sectionContent}>
-              {item.reviews || 'No reviews available'}
-            </p>
+            <h2 style={modalStyles.sectionTitle}>Included Items</h2>
+            <ul style={modalStyles.sectionContent}>
+              {includes?.length > 0
+                ? includes.map((included, index) => (
+                    <li key={index}>{included.included_item}</li>
+                  ))
+                : 'No items included'}
+            </ul>
           </div>
         </div>
       </div>
@@ -143,16 +162,3 @@ const Modal = ({ item, onClose }) => {
 };
 
 export default Modal;
-
-
-
-
-
-
-
-
-
-
-
-
-

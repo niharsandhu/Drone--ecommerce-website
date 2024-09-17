@@ -16,7 +16,8 @@ const Product = ({
   specifications,
   features,
   additionalImages,
-  reviews,
+  includes,
+  data,
   onClick,
 }) => {
   const dispatch = useDispatch();
@@ -42,6 +43,16 @@ const Product = ({
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  console.log(
+    title,
+    text,
+    img,
+    price,
+    specifications,
+    features,
+    includes,
+    onClick);
 
   return (
     <div>
@@ -91,23 +102,17 @@ const Product = ({
       </div>
 
       {isModalOpen && (
-        <Modal
-          item={{
-            id,
-            title,
-            text,
-            img,
-            color,
-            shadow,
-            price,
-            rating,
-            specifications,
-            features,
-            additionalImages,
-            reviews
-          }}
-          onClose={closeModal}
-        />
+        <Modal 
+        title={title}
+        price={price}
+        text={text}
+        img={img}
+        specifications={specifications}
+        features={features}
+        includes={includes}
+        onClose={closeModal} 
+      />
+      
       )}
     </div>
   );

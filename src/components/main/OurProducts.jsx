@@ -86,6 +86,9 @@ export const Sales = React.forwardRef(({ ifExists, categories, numberOfItems, on
             price={item.price} // price of the item
             text={item.description} // description of the item
             img={item.images[0]?.full_image_url} // Use the first image from the array
+            specifications={item.specifications.value}
+            features={item.features[0]} // working, a arr of dict
+            includes={item.includes[0].included_item}
             onClick={(e) => openModal(item.id, e)}
           />
         ))}
