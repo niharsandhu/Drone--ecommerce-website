@@ -32,7 +32,7 @@ const Psales = React.forwardRef(({ ifExists, endpoint: { title }, onProductClick
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get("http://68.183.81.196/api/product/featured", {
+        const result = await axios.get("http://api.hobbyhai.com/api/product/featured", {
           auth: {
             username: import.meta.env.VITE_USERNAME,
             password: import.meta.env.VITE_PASSWORD,
