@@ -61,8 +61,8 @@ export const Sales = React.forwardRef(({ ifExists, categories, numberOfItems, on
       try {
         const result = await axios.get("https://api.hobbyhai.com/api/product", {
           auth: {
-            username: import.meta.env.VITE_USERNAME,
-            password: import.meta.env.VITE_PASSWORD,
+            username: "root",
+            password: "apiAccess",
           }
         });
 

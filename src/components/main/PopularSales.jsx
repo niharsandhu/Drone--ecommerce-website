@@ -34,8 +34,8 @@ const Psales = React.forwardRef(({ ifExists, endpoint: { title }, onProductClick
       try {
         const result = await axios.get("https://api.hobbyhai.com/api/product/featured", {
           auth: {
-            username: import.meta.env.VITE_USERNAME,
-            password: import.meta.env.VITE_PASSWORD,
+            username: "root",
+            password: "apiAccess",
           }
         });
 
