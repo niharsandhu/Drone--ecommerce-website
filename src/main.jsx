@@ -14,6 +14,7 @@ import Modal from './components/main/Modal';
 import Psales from './components/main/PopularSales';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductPage from './components/main/ProductPage';
+import Cart from './components/cart/Cart';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
+      <Cart/>
       <main>
         <Routes>
           <Route 

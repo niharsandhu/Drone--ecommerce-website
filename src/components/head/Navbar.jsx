@@ -58,7 +58,7 @@ export const Navbar = () => {
           <img
             src={logo}
             alt="logo"
-            className={`w-11 h-auto ${navState && 'filter brightness-0'}`}
+            className={`w-12 h-auto ${navState && 'filter brightness-0'}`}
           />
         </div>
         <ul className="flex items-center justify-center gap-2">
@@ -83,7 +83,7 @@ export const Navbar = () => {
             <img
               src={menu}
               alt="new logo"
-              className={`w-5 h-auto cursor-pointer ${
+              className={`w-7 h-auto cursor-pointer ${
                 navState && 'filter brightness-0'
               }`}
               onClick={toggleDropdown}
@@ -153,7 +153,7 @@ export const Navbar = () => {
           </li>
           <li className="grid items-center">
             <HeartIcon
-              className={`icon-style w-5 h-auto ${
+              className={`icon-style w-7 h-auto ${
                 navState && 'text-slate-900 transition-all duration-300'
               }`}
             />
@@ -165,7 +165,7 @@ export const Navbar = () => {
               className="border-none outline-none active:scale-110 transition-all duration-300 relative"
             >
               <ShoppingBagIcon
-                className={`icon-style w-5 h-auto ${
+                className={`icon-style w-7 h-auto ${
                   navState && 'text-slate-900 transition-all duration-300'
                 }`}
               />
@@ -183,7 +183,7 @@ export const Navbar = () => {
           <li className="grid items-center">
             <a href="src/signInForm/form.html" target="_blank">
               <UserCircleIcon
-                className={`icon-style w-5 h-auto ${
+                className={`icon-style w-7 h-auto ${
                   navState && 'text-slate-900 transition-all duration-300'
                 }`}
               />

@@ -26,18 +26,18 @@ export const Hero = ({ heroapi: { title, subtitle, btntext, img, sociallinks, vi
       <div className='relative opacity-100 z-20 grid items-center justify-items-center nike-container'>
         {/* Title, Subtitle, and Button */}
         <div className='grid items-center justify-items-center mt-20 md:mt-24'>
-          <h1 className='transform -translate-y-3 lg:text-[42px] md:text-4xl sm:text-3xl xsm:text-2xl font-extrabold filter drop-shadow-sm text-slate-200'>
+          <h1 className='transform -translate-y-3 text-6xl lg:text-5xl md:text-4xl sm:text-3xl xsm:text-2xl font-extrabold filter drop-shadow-sm text-slate-200'>
             {title}
           </h1>
-          <h2 className='transform -translate-y-5 lg:text-[42px] md:text-4xl sm:text-3xl xsm:text-2xl font-extrabold filter drop-shadow-sm text-slate-200'>
+          <h1 className='transform -translate-y-5  text-6xl lg:text-5xl md:text-4xl sm:text-3xl xsm:text-2xl font-extrabold filter drop-shadow-sm text-slate-200 my-3'>
             {subtitle}
-          </h2>
-          <button type='button' className='button-theme bg-slate-200 shadow-slate-200 rounded-xl my-1'>
+          </h1>
+          <button type='button' className='button-theme bg-slate-200  shadow-slate-200 rounded-xl my-5'>
             {btntext}
           </button>
           
           {/* Video Clips */}
-          <div className='grid items-center gap-5 md:gap-3 absolute top-[39vh] lg:top-[33vh] left-[20%] xl:left-[10%] w-auto h-auto'>
+          <div className='grid items-center gap-5 md:gap-3 absolute top-[33vh] lg:top-[27vh] left-[11%] xl:left-0 w-auto h-auto'>
             {videos?.map((val, i) => (
               <Clips key={i} imgsrc={val.imgsrc} clip={val.clip} />
             ))}
