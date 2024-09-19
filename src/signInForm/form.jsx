@@ -1,27 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './form.css';
 import * as Components from './compo';
 
 function Sign() {
-    const [signIn, toggle] = React.useState(true);
+    const [signIn, toggle] = useState(true);
+    const [responseMessage, setResponseMessage] = useState('');
+
+    const handleSubmit = async (event, url) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            setResponseMessage(result.message || 'Success');
+        } catch (error) {
+            setResponseMessage('An error occurred');
+        }
+    };
+
     return (
         <Components.Container>
             <Components.SignUpContainer $signinIn={signIn}>
-                <Components.Form>
+                <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/register')}>
+                    {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
                     <Components.Title>Create Account</Components.Title>
-                    <Components.Input type='text' placeholder='Name' />
-                    <Components.Input type='email' placeholder='Email' />
-                    <Components.Input type='password' placeholder='Password' />
-                    <Components.Button>Sign Up</Components.Button>
+                    <Components.Input type='text' id="name" name="name" placeholder='Name' />
+                    <Components.Input type='email' id="email" name="email" placeholder='Email' />
+                    <Components.Input type='password' id="password" name="password" placeholder='Password' />
+                    <Components.Input type="tel" id="countryCode" name="countryCode" placeholder='+91'/>
+                    <Components.Input type="tel" id="phone_number" name="phone_number" placeholder='Phone Number'/>
+                    <Components.Input type='submit' value="Submit"/>
                 </Components.Form>
             </Components.SignUpContainer>
 
             <Components.SignInContainer $signinIn={signIn}>
-                <Components.Form>
+                <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/login')}>
                     <Components.Title>Sign in</Components.Title>
-                    <Components.Input type='email' placeholder='Email' />
-                    <Components.Input type='password' placeholder='Password' />
+                    <Components.Input type='email' name="email" placeholder='Email' />
+                    <Components.Input type='password' name="password" placeholder='Password' />
                     <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
                     <Components.Button>Sign In</Components.Button>
                 </Components.Form>
@@ -50,6 +76,8 @@ function Sign() {
                     </Components.RightOverlayPanel>
                 </Components.Overlay>
             </Components.OverlayContainer>
+
+            {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
         </Components.Container>
     );
 }
