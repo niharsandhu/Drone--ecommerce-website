@@ -11,13 +11,13 @@ const Product = ({
   title,
   text,
   img,
-  btn,
   rating,
   price,
   specifications,
   features,
   additionalImages,
-  reviews,
+  includes,
+  data,
   onClick,
 }) => {
   const dispatch = useDispatch();
@@ -44,15 +44,25 @@ const Product = ({
     setIsModalOpen(false);
   };
 
+  console.log(
+    title,
+    text,
+    img,
+    price,
+    specifications,
+    features,
+    includes,
+    onClick);
+
   return (
     <div>
       <div
-        className={`relative bg-gradient-to-b ${color} ${shadow} grid items-center justify-items-center rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-[200px] h-[200px] hover:scale-105 cursor-pointer`}
+        className={`relative bg-gradient-to-b bg-blue-400 grid items-center justify-items-center rounded-xl py-4 px-5 transition-all duration-700 ease-in-out w-[200px] h-[200px] hover:scale-105 cursor-pointer`}
         onClick={handleItemClick}
       >
         <div className="flex flex-col items-center justify-between h-full w-full">
-          <h1 className="text-slate-200 text-xs font-medium filter drop-shadow absolute top-3">{title}</h1>
-          <p className="text-slate-200 filter drop-shadow text-[10px] font-normal mb-0 absolute top-7">{text}</p>
+          <h1 className="text-black text-xs font-medium filter drop-shadow absolute top-3">{title}</h1>
+          <p className="text-black filter drop-shadow text-[10px] font-normal mb-0 absolute top-7">{text}</p>
 
           <div className="flex items-center justify-between w-[75px] absolute top-12">
             <div className="flex items-center bg-white/80 px-1 rounded blur-effect-theme">
@@ -77,7 +87,7 @@ const Product = ({
               className="bg-white/90 blur-effect-theme button-theme w-14 h-4 px-1 py-0 shadow shadow-sky-200 text-[10px] text-black buy-now-button"
               onClick={onAddToCartAndToggle}
             >
-              {btn}
+              Buy
             </button>
           </div>
         </div>
@@ -92,23 +102,17 @@ const Product = ({
       </div>
 
       {isModalOpen && (
-        <Modal
-          item={{
-            id,
-            title,
-            text,
-            img,
-            color,
-            shadow,
-            price,
-            rating,
-            specifications,
-            features,
-            additionalImages,
-            reviews
-          }}
-          onClose={closeModal}
-        />
+        <Modal 
+        title={title}
+        price={price}
+        text={text}
+        img={img}
+        specifications={specifications}
+        features={features}
+        includes={includes}
+        onClose={closeModal} 
+      />
+      
       )}
     </div>
   );
