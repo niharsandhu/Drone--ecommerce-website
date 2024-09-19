@@ -51,10 +51,10 @@ function Sign() {
                 <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/login')}>
                     <Components.Title>Sign in</Components.Title>
                     {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
-                    <Components.Input type='email' name="email" placeholder='Email' />
-                    <Components.Input type='password' name="password" placeholder='Password' />
+                    <Components.Input type='email' id='emial' name="email" placeholder='Email' />
+                    <Components.Input type='password' id='password' name="password" placeholder='Password' />
                     <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                    <Components.Button>Sign In</Components.Button>
+                    <Components.Button type='submit' >Sign In</Components.Button>
                 </Components.Form>
             </Components.SignInContainer>
 
