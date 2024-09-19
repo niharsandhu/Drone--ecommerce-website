@@ -1,47 +1,28 @@
-import React, { useState } from "react";
+import React from 'react';
 import { useDispatch } from "react-redux";
 import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { setAddItemToCart, setOpenCart } from "../../app/CartSlice";
-import Modal from "./Modal"; // Import ProductDescription
+import { useNavigate } from "react-router-dom";
 
-const Product = ({
-  id,
-  color,
-  shadow,
-  title,
-  text,
-  img,
-  btn,
-  rating,
-  price,
-  specifications,
-  features,
-  additionalImages,
-  reviews,
-  onClick,
-}) => {
+const Product = ({ id, title, text, rating, price, color, shadow, btn }) => {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const onAddToCart = (e) => {
-    e.stopPropagation(); // Prevent event propagation
-    const item = { id, title, text, img, color, shadow, price };
+    e.stopPropagation();
+    const item = { id, title, text, price };
     dispatch(setAddItemToCart(item));
   };
 
   const onAddToCartAndToggle = (e) => {
-    e.stopPropagation(); // Prevent event propagation
+    e.stopPropagation();
     onAddToCart(e);
     dispatch(setOpenCart({ cartState: true }));
   };
 
   const handleItemClick = (e) => {
-    if (onClick) onClick(e); // Call the passed onClick function with the event
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+    e.stopPropagation();
+    navigate(`/product/${id}`);
   };
 
   return (
@@ -82,39 +63,21 @@ const Product = ({
           </div>
         </div>
 
+        {/* Add product image here */}
         <div className="absolute bottom-0">
           <img
-            src={img}
+            src={`path_to_your_image/${id}.png`} // Replace with the correct image source
             alt={`img/item-img/${id}`}
             className="w-[120px] h-[120px] object-contain"
           />
         </div>
       </div>
-
-      {isModalOpen && (
-        <Modal
-          item={{
-            id,
-            title,
-            text,
-            img,
-            color,
-            shadow,
-            price,
-            rating,
-            specifications,
-            features,
-            additionalImages,
-            reviews
-          }}
-          onClose={closeModal}
-        />
-      )}
     </div>
   );
 };
 
-export default Product; // Ensure only one default export
+export default Product;
+
 
 
 

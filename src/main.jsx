@@ -12,6 +12,9 @@ import { Footer } from './components/foot/Footer';
 import { heroapi, high, sneaker, footerAPI, frames, Electronics, camera, motors, accessories, Propellers, battery, radio, popularsales } from './data/data';
 import Modal from './components/main/Modal';
 import Psales from './components/main/PopularSales';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProductPage from './components/main/ProductPage';
+
 
 const App = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
@@ -23,25 +26,37 @@ const App = () => {
   const handleCloseModal = () => {
     setSelectedProductId(null);
   };
+  
 
   const categories = [Electronics, frames,camera,motors,accessories,Propellers,battery,radio];
 
+
   return (
-    <>
+    <Router>
       <Navbar />
       <main>
-        <Hero heroapi={heroapi} />
-        <Psales endpoint={popularsales}/>
-        <Highlights endpoint={high} ifExists onProductClick={handleProductClick} />
-        <Sales categories={categories} numberOfItems={3} ifExists onProductClick={handleProductClick} />
-        <Highlights endpoint={sneaker} onProductClick={handleProductClick} />
-        <br />
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <>
+                <Hero heroapi={heroapi} />
+                <Psales endpoint={popularsales}/>
+                <Highlights endpoint={high} ifExists onProductClick={handleProductClick} />
+                <Sales categories={categories} numberOfItems={3} ifExists onProductClick={handleProductClick} />
+                <Highlights endpoint={sneaker} onProductClick={handleProductClick} />
+              </>
+            } 
+          />
+          <Route path="/product/:id" element={<ProductPage />} />
+        </Routes>
       </main>
       <Footer footerAPI={footerAPI} />
+      <Toaster position="top-center" reverseOrder={false} />
       {selectedProductId && (
         <Modal productId={selectedProductId} onClose={handleCloseModal} />
       )}
-    </>
+    </Router>
   );
 };
 
