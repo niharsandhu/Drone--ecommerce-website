@@ -19,6 +19,10 @@ function Sign() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa('root:apiAccess')
+                },
             });
 
             const result = await response.json();
@@ -32,20 +36,21 @@ function Sign() {
         <Components.Container>
             <Components.SignUpContainer $signinIn={signIn}>
                 <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/register')}>
-                    {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
                     <Components.Title>Create Account</Components.Title>
+                    {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
                     <Components.Input type='text' id="name" name="name" placeholder='Name' />
                     <Components.Input type='email' id="email" name="email" placeholder='Email' />
                     <Components.Input type='password' id="password" name="password" placeholder='Password' />
-                    <Components.Input type="tel" id="countryCode" name="countryCode" placeholder='+91'/>
-                    <Components.Input type="tel" id="phone_number" name="phone_number" placeholder='Phone Number'/>
-                    <Components.Input type='submit' value="Submit"/>
+                    <Components.Input type="tel" id="countryCode" name="countryCode" placeholder='+91' />
+                    <Components.Input type="tel" id="phone_number" name="phone_number" placeholder='Phone Number' />
+                    <Components.Input type='submit' value="Submit" />
                 </Components.Form>
             </Components.SignUpContainer>
 
             <Components.SignInContainer $signinIn={signIn}>
                 <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/login')}>
                     <Components.Title>Sign in</Components.Title>
+                    {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
                     <Components.Input type='email' name="email" placeholder='Email' />
                     <Components.Input type='password' name="password" placeholder='Password' />
                     <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
@@ -84,7 +89,7 @@ function Sign() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Sign/>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Sign />
+    </React.StrictMode>
 );
