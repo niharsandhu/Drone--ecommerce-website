@@ -21,7 +21,7 @@ export const Hero = ({ heroapi: { title, subtitle, btntext, img, sociallinks, vi
   return (
     <div className='relative h-auto w-auto flex flex-col'>
       {/* Background Theme */}
-      <div className='bg-theme clip-path h-[95vh] lg:h-[85vh] md:h-[75vh] sm:h-[6vh] w-auto absolute top-0 left-0 right-0 opacity-100 z-10'></div>
+      <div className='bg-theme clip-path h-[85vh] lg:h-[75vh] md:h-[65vh] sm:h-[55vh] w-auto absolute top-0 left-0 right-0 opacity-100 z-10'></div>
       
       <div className='relative opacity-100 z-20 grid items-center justify-items-center nike-container'>
         {/* Title, Subtitle, and Button */}
@@ -57,7 +57,7 @@ export const Hero = ({ heroapi: { title, subtitle, btntext, img, sociallinks, vi
             ref={tiltRef}
             src={img}
             alt='hero-img'
-            className='product w-auto h-[70vh] lg:h-[60vh] md:h-[50vh] sm:h-[47vh] xsm:h-[44vh] transitions-theme -rotate-[0deg] hover:rotate-20 cursor-pointer object-fill -mt-8 card'
+            className='product w-auto h-[65vh] lg:h-[55vh] md:h-[51vh] sm:h-[41vh] xsm:h-[39vh] transitions-theme -rotate-[0deg] hover:rotate-20 cursor-pointer object-fill -mt-8 card'
           />
         </div>
       </div>
