@@ -40,7 +40,7 @@ const Product = ({ id, title, text, rating, price, btn }) => {
 
   return (
     <div
-      className={`relative bg-gradient-to-b ${gradient} ${shadow} grid items-center justify-items-center rounded-lg py-4 px-5 transition-transform duration-300 ease-in-out cursor-pointer w-full h-80 max-w-xs`}
+      className={`relative bg-gradient-to-b ${gradient} ${shadow} grid items-center justify-items-center rounded-xl py-4 px-5 transition-transform duration-300 ease-in-out cursor-pointer w-full h-80 max-w-xs`}
       onClick={handleItemClick}
     >
       <div className="flex flex-col items-center justify-items-start h-full w-full space-y-2">

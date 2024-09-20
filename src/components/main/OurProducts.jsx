@@ -78,7 +78,7 @@ export const Sales = React.forwardRef(({ ifExists, categories, numberOfItems, on
   return (
     <div className='nike-container' ref={ref}>
       <Title title="Our Products" />
-      <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4 ${ifExists ? 'grid-cols-4 xl:grid-cols-4 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
+      <div className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-4  mb-10 ${ifExists ? 'grid-cols-4 xl:grid-cols-4 sm:grid-cols-1' : 'grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'}`}>
         {itemData.map((item, i) => (
           <Product
             key={item.id} // index number for unique identification
