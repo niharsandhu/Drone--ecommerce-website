@@ -13,7 +13,6 @@ function Sign() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            console.log('Sending data:', data); // Log data being sent
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -23,22 +22,10 @@ function Sign() {
                 body: JSON.stringify(data),
             });
 
-            console.log('Response status:', response.status); // Log status
-            console.log('Response headers:', response.headers); // Log headers
-
-            // Check if the response is a valid JSON
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Response JSON:', result); // Log response JSON
-                setResponseMessage(result.message || 'Success');
-            } else {
-                const errorText = await response.text(); // Get the text error message if JSON fails
-                console.log('Error text:', errorText); // Log the error text
-                setResponseMessage('Error: ' + errorText);
-            }
+            const result = await response.json();
+            setResponseMessage(result.message || 'Success');
         } catch (error) {
-            console.error('Catch error:', error); // Log the error message
-            setResponseMessage('An unexpected error occurred.');
+            setResponseMessage('An error occurred');
         }
     };
 
@@ -48,11 +35,11 @@ function Sign() {
                 <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/register')}>
                     <Components.Title>Create Account</Components.Title>
                     {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
-                    <Components.Input type='text' id="name" name="name" placeholder='Name' />
-                    <Components.Input type='email' id="email" name="email" placeholder='Email' />
-                    <Components.Input type='password' id="password" name="password" placeholder='Password' />
-                    <Components.Input type="tel" id="countryCode" name="countryCode" placeholder='+91' />
-                    <Components.Input type="tel" id="phone_number" name="phone_number" placeholder='Phone Number' />
+                    <Components.Input type='text' id="register-name" name="name" placeholder='Name' />
+                    <Components.Input type='email' id="register-email" name="email" placeholder='Email' />
+                    <Components.Input type='password' id="register-password" name="password" placeholder='Password' />
+                    <Components.Input type="tel" id="register-countryCode" name="countryCode" placeholder='+91' />
+                    <Components.Input type="tel" id="register-phone_number" name="phone_number" placeholder='Phone Number' />
                     <Components.Button type='submit'>Submit</Components.Button>
                 </Components.Form>
             </Components.SignUpContainer>
@@ -61,8 +48,8 @@ function Sign() {
                 <Components.Form onSubmit={(e) => handleSubmit(e, 'https://api.hobbyhai.com/api/auth/login')}>
                     <Components.Title>Sign in</Components.Title>
                     {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
-                    <Components.Input type='email' id='email' name="email" placeholder='Email' />
-                    <Components.Input type='password' id='password' name="password" placeholder='Password' />
+                    <Components.Input type='email' id='login-email' name="email" placeholder='Email' />
+                    <Components.Input type='password' id='login-password' name="password" placeholder='Password' />
                     <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
                     <Components.Button type='submit'>Sign In</Components.Button>
                 </Components.Form>
@@ -91,6 +78,8 @@ function Sign() {
                     </Components.RightOverlayPanel>
                 </Components.Overlay>
             </Components.OverlayContainer>
+
+            {responseMessage && <p style={{ color: 'red' }}>{responseMessage}</p>}
         </Components.Container>
     );
 }
